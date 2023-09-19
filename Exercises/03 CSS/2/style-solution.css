@@ -1,0 +1,20 @@
+table th {
+    text-transform: uppercase;
+}
+
+a {
+    color:green;
+}
+
+table td.top {
+    background-color: #ECAA4D;
+}
+
+em {
+    background-color: blue;
+}
+
+#the_most_important {
+    text-transform: uppercase;
+    background-color: gold;
+}
