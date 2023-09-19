@@ -18,3 +18,61 @@ em {
     text-transform: uppercase;
     background-color: gold;
 }
+
+h2 {
+    font-family: sans-serif;
+}
+
+h1, h2, h3 {
+    text-transform: capitalize;
+}
+
+h2 + p::first-letter {
+    font-size: x-large;
+}
+
+table tr:hover {
+    background-color: lightyellow;
+  }
+  
+  table tr:hover td {
+    background-color: lightyellow;
+  }
+  
+  
+  nav ul {
+    display: inline;
+  }
+  
+  nav ul li:first-child a {
+    text-decoration: underline;
+  }
+  
+  
+  table tbody tr:nth-child(odd) {
+    background-color: cyan;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+  
+  ::selection {
+    background-color: lightblue;
+  }
+  
+  :not(nav) + a:hover {
+    cursor: pointer;
+  }
+  
+  input {
+    height: 20px;
+  }
+  
+  input[type="text"] {
+    border-color: lightgray;
+  }
+  
+  input[name="message"] {
+    height: 50px;
+  }
