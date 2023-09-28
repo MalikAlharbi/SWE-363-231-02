@@ -1,6 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300&display=swap");
+body {
+  font-family: DM Serif Display;
+}
+
+h1 {
+  color: #6eeb83;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+p {
+  font-family: Lexend Deca;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 button {
-  background-color: red;
   transition: background-color 0.3s ease;
+  width: 128px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 100px;
+  border: 1px solid #6eeb83;
+  background: rgba(110, 235, 131, 0);
+  color: #6eeb83;
+  font-family: Lexend Deca;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 button:hover {
