@@ -1,4 +1,28 @@
-/* Align the aside section to the right */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  .watermark-container {
+    text-align: center;
+  }
+
+  .watermark {
+    display: none;
+  }
+
+  aside {
+    margin-top: 20px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+}
 
 aside {
     float: right;
@@ -36,7 +60,6 @@ aside {
   
  
   
-  /* Add a small watermark with initials to all images */
   img {
     position: relative;
   }
@@ -55,7 +78,6 @@ aside {
     color: white;
     font-size: 12px;
   }
-  /* Align the card date to the opposite side of the title */
   .card-info {
     display: flex;
     justify-content: space-between;
