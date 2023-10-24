@@ -102,83 +102,80 @@
 
   <script>
     // JavaScript code to generate articles dynamically
+    // JavaScript code to generate articles dynamically
     class WebsiteObject {
-  constructor(title, description) {
-    this.title = title;
-    this.description = description;
-  }
-}
+      constructor(title, description) {
+        this.title = title;
+        this.description = description;
+      }
+    }
 
-class Article extends WebsiteObject {
-  constructor(title, description, src, date, link, tags) {
-    super(title, description);
-    this.src = src;
-    this.date = date;
-    this.link = link;
-    this.tags = tags;
-  }
-}
+    class Article extends WebsiteObject {
+      constructor(title, description, src, date, link, tags) {
+        super(title, description);
+        this.src = src;
+        this.date = date;
+        this.link = link;
+        this.tags = tags;
+      }
+    }
 
-const articles = [
-  new Article(
-    "Super-heatproof computer memory survives temperatures over 500°C",
-    "Memory technology that can withstand extreme temperatures.",
-    "https://images.newscientist.com/wp-content/uploads/2023/09/27110926/SEI_173494949.jpg?width=900",
-    "Oct 1, 2023",
-    "#",
-    ["Science", "Physics", "Computer"]
-  ),
-  new Article(
-    "Exoskeleton suit boosts your legs to help you run faster",
-    "A new suit that enhances running performance.",
-    "https://images.newscientist.com/wp-content/uploads/2023/09/27143935/SEI_173524369.jpg?width=900",
-    "Sep 28, 2023",
-    "#",
-    ["Health", "Fitness"]
-  ),
-  new Article(
-    "AI is evolving for its own benefit, not ours",
-    "The development of AI technology for self-improvement.",
-    "https://images.newscientist.com/wp-content/uploads/2023/09/19172434/SEI_171766752.jpg?width=900",
-    "Sep 25, 2023",
-    "#",
-    ["AI", "Coding", "Data"]
-  )
-];
+    const createArticles = (() => {
+      const createWebsiteObject = (title, description) => ({ title, description });
 
-const articlesList = document.getElementById('articlesList');
+      const createArticle = (title, description, src, date, link, tags) => {
+        const article = createWebsiteObject(title, description);
+        return { ...article, src, date, link, tags };
+      };
 
-articles.forEach(article => {
-  const articleItem = document.createElement('a');
-  articleItem.href = article.link;
-  articleItem.classList.add('list-group-item', 'list-group-item-action');
+      return [
+        createArticle(
+          "Super-heatproof computer memory survives temperatures over 500°C",
+          "Memory technology that can withstand extreme temperatures.",
+          "https://images.newscientist.com/wp-content/uploads/2023/09/27110926/SEI_173494949.jpg?width=900",
+          "Oct 1, 2023",
+          "#",
+          ["Science", "Physics", "Computer"]
+        ),
+        createArticle(
+          "Exoskeleton suit boosts your legs to help you run faster",
+          "A new suit that enhances running performance.",
+          "https://images.newscientist.com/wp-content/uploads/2023/09/27143935/SEI_173524369.jpg?width=900",
+          "Sep 28, 2023",
+          "#",
+          ["Health", "Fitness"]
+        ),
+        createArticle(
+          "AI is evolving for its own benefit, not ours",
+          "The development of AI technology for self-improvement.",
+          "https://images.newscientist.com/wp-content/uploads/2023/09/19172434/SEI_171766752.jpg?width=900",
+          "Sep 25, 2023",
+          "#",
+          ["AI", "Coding", "Data"]
+        )
+      ];
+    })();
 
-  const articleContent = `
-    <div class="d-flex">
-      <img src="${article.src}" alt="${article.title}" class="flex-shrink-0 me-3" />
-      <div>
-        <h3 class="mb-0">${article.title}</h3>
-        <small class="text-muted">${article.date}</small>
-      </div>
-    </div>
-  `;
+    const articlesList = document.getElementById('articlesList');
 
-  articleItem.innerHTML = articleContent;
-  articlesList.appendChild(articleItem);
+    createArticles.forEach(article => {
+      const articleItem = document.createElement('a');
+      articleItem.href = article.link;
+      articleItem.classList.add('list-group-item', 'list-group-item-action');
+
+      const articleContent = `
+        <div class="d-flex">
+          <img src="${article.src}" alt="${article.title}" class="flex-shrink-0 me-3" />
+          <div>
+            <h3 class="mb-0">${article.title}</h3>
+            <small class="text-muted">${article.date}</small>
+          </div>
+        </div>
+      `;
+
+      articleItem.innerHTML = articleContent;
+      articlesList.appendChild(articleItem);
     });
-    //FETCH SHIBA
-    fetch('http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=false')
-    .then(response => response.json())
-    .then(data => {
-      const shibaContainer = document.getElementById('shiba');
-      const shiba = document.createElement('img');
-      shiba.src = data[0];
-      shiba.alt = 'Shiba';
-      shibaContainer.appendChild(shiba);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    }); 
    
   </script>
 
