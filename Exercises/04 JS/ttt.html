@@ -90,21 +90,60 @@
 
   <h2 id="score">Score: X - 0, O - 0</h2>
 
-  <script>
-    let turn = "X";
-    let gameEnded = false;
-    let cells = document.getElementsByClassName("cell");
-    let resetButton = document.getElementById("reset-btn");
-    let scoreElement = document.getElementById("score");
-    let score = {
-      X: 0,
-      O: 0,
-    };
+    <!-- Help popup -->
+    <div id="help-popup" tabindex="0">
+      <h3>Keyboard Controls:</h3>
+      <ul>
+        <li>Use the Tab key to navigate between cells and the reset button.</li>
+        <li>Press the Enter key to select a cell and make a move.</li>
+        <li>Press the Space key to reset the game.</li>
+      </ul>
+    </div>
+  
+    <script>
+      let turn = "X";
+      let gameEnded = false;
+      let cells = document.getElementsByClassName("cell");
+      let resetButton = document.getElementById("reset-btn");
+      let scoreElement = document.getElementById("score");
+      let score = {
+        X: 0,
+        O: 0,
+      };
+  
+   // Add event listeners to each cell
+for (let cell of cells) {
+  cell.addEventListener("click", cellClicked);
+  cell.addEventListener("keydown", handleCellKeyPress);
+}
+
+resetButton.addEventListener("click", resetGame);
+resetButton.addEventListener("keydown", handleResetButtonKeyPress);
+  
+      // Show/hide help popup
+      const helpPopup = document.getElementById("help-popup");
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "?" || event.key === "F1") {
+          helpPopup.classList.toggle("show");
+        }
+      });
+  
+      function handleCellKeyPress(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          cellClicked(event.target);
+        }
+      }
+  
+      function handleResetButtonKeyPress(event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          resetGame();
+        }
+      }
 
     // Add event listeners to each cell
-    for (let cell of cells) {
-      cell.addEventListener("click", cellClicked);
-    }
+    
 
     resetButton.addEventListener("click", resetGame);
 
