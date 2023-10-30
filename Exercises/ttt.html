@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .board {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .cell {
+      font-family: sans-serif;
+      font-size: larger;
+      font-weight: bolder;
+      background-color: beige;
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .cell:hover {
+      background-color: blanchedalmond;
+    }
+
+    .winner {
+      background-color: lightgreen;
+    }
+
+    .draw {
+      background-color: lightgray;
+    }
+
+    #turn {
+      margin-bottom: 20px;
+    }
+
+    #score {
+      text-align: center;
+    }
+
+    #reset-btn {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="turn">
+    Now it's <span>X</span>'s turn
+  </h1>
+  <!-- Board -->
+  <div class="board">
+    <div class="row">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="row">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="row">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+  </div>
+
+  <button id="reset-btn">Reset</button>
+
+  <h2 id="score">Score: X - 0, O - 0</h2>
+
+    <!-- Help popup -->
+    <div id="help-popup" tabindex="0">
+      <h3>Keyboard Controls:</h3>
+      <ul>
+        <li>Use the Tab key to navigate between cells and the reset button.</li>
+        <li>Press the Enter key to select a cell and make a move.</li>
+        <li>Press the Space key to reset the game.</li>
+      </ul>
+    </div>
+  
+    <script>
+      let turn = "X";
+      let gameEnded = false;
+      let cells = document.getElementsByClassName("cell");
+      let resetButton = document.getElementById("reset-btn");
+      let scoreElement = document.getElementById("score");
+      let score = {
+        X: 0,
+        O: 0,
+      };
+  
+   // Add event listeners to each cell
+for (let cell of cells) {
+  cell.addEventListener("click", cellClicked);
+  cell.addEventListener("keydown", handleCellKeyPress);
+}
+
+resetButton.addEventListener("click", resetGame);
+resetButton.addEventListener("keydown", handleResetButtonKeyPress);
+  
+      // Show/hide help popup
+      const helpPopup = document.getElementById("help-popup");
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "?" || event.key === "F1") {
+          helpPopup.classList.toggle("show");
+        }
+      });
+  
+      function handleCellKeyPress(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          cellClicked(event.target);
+        }
+      }
+  
+      function handleResetButtonKeyPress(event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          resetGame();
+        }
+      }
+
+    // Add event listeners to each cell
+    
+
+    resetButton.addEventListener("click", resetGame);
+
+    function cellClicked(event) {
+      let cell = event.target;
+      if (cell.innerText === "" && !gameEnded) {
+        cell.innerText = turn;
+        cell.classList.add(turn);
+
+        if (checkWin(turn)) {
+          endGame(turn);
+        } else if (checkDraw()) {
+          endGame("draw");
+        } else {
+          turn = turn === "X" ? "O" : "X";
+          document.querySelector("#turn span").innerText = turn;
+        }
+      }
+    }
+
+    function checkWin(player) {
+      const winningPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+        [0, 4, 8], [2, 4, 6] // Diagonals
+      ];
+
+      for (let pattern of winningPatterns) {
+        const [a, b, c] = pattern;
+        if (
+          cells[a].innerText === player &&
+          cells[b].innerText === player &&
+          cells[c].innerText === player
+        ) {
+          cells[a].classList.add("winner");
+          cells[b].classList.add("winner");
+          cells[c].classList.add("winner");
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function checkDraw() {
+      for (let cell of cells) {
+        if (cell.innerText === "") {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function endGame(result) {
+      gameEnded = true;
+      if (result === "draw") {
+        document.getElementById("turn").innerText = "It's a Draw!";
+        document.getElementById("turn").classList.add("draw");
+      } else {
+        document.getElementById("turn").innerText = `Congratulations! Player ${result} wins!`;
+        document.getElementById("turn").classList.add("winner");
+        score[result]++;
+        scoreElement.innerText = `Score: X - ${score.X}, O - ${score.O}`;
+      }
+    }
+
+    function resetGame() {
+      turn = "X";
+      gameEnded = false;
+      for (let cell of cells) {
+        cell.innerText = "";
+        cell.classList.remove("X");
+        cell.classList.remove("O");
+        cell.classList.remove("winner");
+      }
+      document.getElementById("turn").innerText = "Now it's X's turn";
+      document.getElementById("turn").classList.remove("draw");
+      document.getElementById("turn").classList.remove("winner");
+    }
+  </script>
+</body>
+</html>

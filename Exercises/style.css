@@ -1,0 +1,103 @@
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  .watermark-container {
+    text-align: center;
+  }
+
+  .watermark {
+    display: none;
+  }
+
+  aside {
+    margin-top: 20px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+}
+
+aside {
+    float: right;
+    width: 30%;
+    margin-left: 10px;
+  }
+
+  nav{    
+    float: left;
+    display: inline;
+    position: sticky;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+
+  header,p,table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+ 
+  
+  img {
+    position: relative;
+  }
+  
+  .watermark-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .watermark {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 12px;
+  }
+  .card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-date {
+    order: -1;
+  }
+
+  
+  #shiba {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+  }
+
+  #canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

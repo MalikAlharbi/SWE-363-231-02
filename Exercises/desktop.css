@@ -1,0 +1,23 @@
+body {
+    font-size: 16px;
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  .watermark-container {
+    text-align: right;
+  }
+  
+  .watermark {
+    display: block;
+  }
+  
+  aside {
+    margin-top: 40px;
+  }
+  
+  table {
+    font-size: 14px;
+  }
