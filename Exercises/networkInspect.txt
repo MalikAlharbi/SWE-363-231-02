@@ -1,0 +1,8 @@
+1- URL: https://www.kfupm.edu.sa/
+2- 
+a. 10.142.25.53:443
+b. 45 Requests
+c. text/html, image/svg+xml, image/jpeg, text/javascript....
+d. Third response (home-banner). Content-Length: 458650
+c. "time": 107.92100001708604
+
