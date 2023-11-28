@@ -1,4 +1,5 @@
-const readline = require('readline');
+const express = require('express');
+const router = express.Router();
 
 const predefinedResponses = {
     'What is your name?': 'My name is Chatbot.',
@@ -7,35 +8,19 @@ const predefinedResponses = {
     'Exit': 'Goodbye! Have a great day!',
 };
 
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
+router.get('/', (req, res) => {
+    res.send('Welcome to Chatbot! Ask me anything or type "exit" to quit.');
 });
 
+router.post('/question', (req, res) => {
+    const question = req.body.question.trim();
 
-function processInput(input) {
-    input = input.trim();
-
-    if (predefinedResponses.hasOwnProperty(input)) {
-        console.log(predefinedResponses[input]);
+    if (predefinedResponses.hasOwnProperty(question)) {
+        const answer = predefinedResponses[question];
+        res.send(answer);
     } else {
-        console.log("I'm sorry, I don't understand. Can you please ask a different question?");
+        res.send("I'm sorry, I don't understand. Can you please ask a different question?");
     }
-}
+});
 
-
-function promptUser() {
-    rl.question('Ask me something: ', (input) => {
-        if (input.toLowerCase() === 'exit' || input.toLowerCase() === 'quit') {
-            console.log(predefinedResponses['Exit']);
-            rl.close();
-        } else {
-            processInput(input);
-            promptUser();
-        }
-    });
-}
-
-console.log('Welcome to Chatbot! Ask me anything or type "exit" to quit.');
-promptUser();
+module.exports = router;

@@ -1,4 +1,14 @@
-//get dir name & read & count # of files
+const express = require('express');
+const app = express();
+
+const chatbotRouter = require('./routes/chatbot');
+
+app.use('/chatbot', chatbotRouter);
+
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
 
 const fileSystem = require("fs");
 if (process.argv.length !== 3) {
