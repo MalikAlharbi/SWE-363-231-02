@@ -8,11 +8,16 @@ const predefinedResponses = {
     'Exit': 'Goodbye! Have a great day!',
 };
 
+
+const processForm = (req, res, next) => {
+    res.send('Form submitted successfully!');
+};
+
 router.get('/', (req, res) => {
     res.send('Welcome to Chatbot! Ask me anything or type "exit" to quit.');
 });
 
-router.post('/question', (req, res) => {
+router.post('/question', processForm, (req, res) => {
     const question = req.body.question.trim();
 
     if (predefinedResponses.hasOwnProperty(question)) {

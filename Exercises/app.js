@@ -1,5 +1,17 @@
 const express = require('express');
 const app = express();
+const port = 3000;
+
+// Middleware to parse the request body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const chatbotRouter = require('./routes/chatbot');
+app.use('/chatbot', chatbotRouter);
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 const chatbotRouter = require('./routes/chatbot');
 
